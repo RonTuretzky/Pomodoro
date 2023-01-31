@@ -111,18 +111,18 @@
                "Secret":"$Secret"
             }
 "@
-        Write-Host "Processing Focus time in your calendar and setting Teams to Focusing status" -ForegroundColor Green
-        Invoke-RestMethod -Method Post -Body $Body -Uri $AutomateURI -ContentType "application/json"
+        #Write-Host "Processing Focus time in your calendar and setting Teams to Focusing status" -ForegroundColor Green
+        #Invoke-RestMethod -Method Post -Body $Body -Uri $AutomateURI -ContentType "application/json"
     }
-   elseif ($ToDoURL -ne ''){Write-Host "Opening your ToDo Pomodoro list in web, may take up to three minutes before calendar focus time update" -ForegroundColor Green; Start-Process -FilePath $ToDoURL}
-   else{Write-Host "No calendar focus time specified" -ForegroundColor Green}
+   #elseif ($ToDoURL -ne ''){Write-Host "Opening your ToDo Pomodoro list in web, may take up to three minutes before calendar focus time update" -ForegroundColor Green; Start-Process -FilePath $ToDoURL}
+   #else{Write-Host "No calendar focus time specified" -ForegroundColor Green}
 
 
 
 
     #Go for deep work
 
-    Write-Host "You are GO for flow and deep work session number $Count"
+    Write-Host "Pomodoro session number $Count"
     Write-Host
     
     #Playing start sound
@@ -145,7 +145,6 @@
             -Status "Time remaining:" `
             -PercentComplete $percentComplete
         if ($i -eq ($seconds / 2)){Write-Host "Halfway mark" -ForegroundColor Blue}
-        if ($i -eq 16){Write-Host "Wrapping up, you will be available in $i seconds" -ForegroundColor Green}
         Start-Sleep -Seconds $delay
     }#Timer ended
     
@@ -181,17 +180,28 @@
 
 }
 
-$Input = "y"
+$Input = ""
 $Count = 1
-while ($Input -eq "y"){
+while ($Input -eq ""){
 
 #Uncomment the one of the below lines and fill in your playlist and IFTTT to have it run as part of the shortcut
 #Start-SimplePomodoro -SpotifyPlayList spotify:playlist:XXXXXXXXXXXXXXXXXX -IFTTTMuteTrigger pomodoro_start -IFTTTUnMuteTrigger pomodoro_stop -IFTTTWebhookKey XXXXXXXXX -Secret YourFlowSecret -AutomateURI YourAutomateURI
-Start-SimplePomodoro -Music y
+#Start-SimplePomodoro -Music y
+Start-SimplePomodoro -Music y -IFTTTMuteTrigger Mute_Notifs -IFTTTUnMuteTrigger Unmute_notifs -IFTTTWebhookKe dGRR9guULGA_JzmOYMkM5n
 
 #Start-SimplePomodoro 
 
-$Input = Read-Host -Prompt 'Start a new Pomodoro deep work session? (y/n)'
+$Input = Read-Host -Prompt 'Exit Pomodoro (n)'
+$PomoNote = Read-Host -Prompt 'What did you accomplish during this pomodoro?'
+$PomoScore = Read-Host -Prompt '?/10'
+$directory = ".\PomodoroNotes"
+$dateTime = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
+$fileName = "$directory\$dateTime" + "_$count.md"
+Set-Content -Path $fileName -Value "$PomoNote`n$PomoScore"
+
 $Count++
+Write-Host $Count 
+Write-Host ($Count % 4 -eq 0)  
+if ($Count % 4 -eq 0) {Write-Host "Consider taking a longer break"}
 
 }
