@@ -1,3 +1,8 @@
 # Jetbrains 
 .idea
-.obsidian
+PomodoroNotes/*
+credentials.json
+# Ignoring obsidian configs 
+*.json
+appearance.json
+PomodoroNotes/.obsidian/appearance.json
