@@ -50,14 +50,17 @@
         $Choice = Read-Host "nc neutral chill | le looping energetic | ie introspecting neutral | lf lo-fi radio" 
         if ($Choice -eq 'nc') {
             Write-Host "Opening your specified Spotify playlist" -ForegroundColor Green;
+            Start-Process -FilePath "C:\Program Files\WindowsApps\SpotifyAB.SpotifyMusic_1.148.625.0_x86__zpdnekdrzrea0\Spotify.exe"
             Start-Process -FilePath "https://open.spotify.com/playlist/6AFarnHSC3tehgHPr9QLpk"
         }
         if ($Choice -eq 'le') {
             Write-Host "Opening your specified Spotify playlist" -ForegroundColor Green;
+            Start-Process -FilePath "C:\Program Files\WindowsApps\SpotifyAB.SpotifyMusic_1.148.625.0_x86__zpdnekdrzrea0\Spotify.exe"
             Start-Process -FilePath "https://open.spotify.com/playlist/6WK4lOFxtSnQaV1JMIydYg"
         }
         if ($Choice -eq 'ie') {
             Write-Host "Opening your specified Spotify playlist" -ForegroundColor Green;
+            Start-Process -FilePath "C:\Program Files\WindowsApps\SpotifyAB.SpotifyMusic_1.148.625.0_x86__zpdnekdrzrea0\Spotify.exe"
             Start-Process -FilePath "https://open.spotify.com/playlist/5YbMOpWoW6nioVqgtdmuGp"
         }
         if ($Choice -eq 'lf') {
@@ -94,8 +97,6 @@
     #Invoking PowerAutomate to change set current time on your Focus time calendar event, either through https trigger og manually via todo
     #Go for deep work
 
-    Clear-Host 
-    
     #Playing start sound
     if (Test-Path -Path $StartNotificationSound) {
      
@@ -166,10 +167,11 @@ while ($In -eq "") {
     if ($Count % 2 -eq 1) {
         if ($Count -gt 1) {
             Write-Host "Starting Break"; Start-SimplePomodoro -Break "b" 
+            $Count++
+            continue 
         } 
     }
     Start-SimplePomodoro -Music y -IFTTTMuteTrigger Mute_Notifs -IFTTTUnMuteTrigger Unmute_notifs -IFTTTWebhookKe dGRR9guULGA_JzmOYMkM5n
-
     Clear-Host  
     $PomoNote = Read-Host -Prompt 'What tasks did you do?'
     Clear-Host 
