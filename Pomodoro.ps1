@@ -47,7 +47,7 @@
         Set-Clipboard -Value $minutes
     }
     if ($Music -eq 'y') {
-        $Choice = Read-Host "nc neutral chill | le looping energetic | ie introspecting neutral | lf lo-fi radio" 
+        $Choice = Read-Host "nc neutral chill | le looping energetic | in introspecting neutral | lf lo-fi radio" 
         if ($Choice -eq 'nc') {
             Write-Host "Opening your specified Spotify playlist" -ForegroundColor Green;
             Start-Process -FilePath "C:\Program Files\WindowsApps\SpotifyAB.SpotifyMusic_1.148.625.0_x86__zpdnekdrzrea0\Spotify.exe"
@@ -58,7 +58,7 @@
             Start-Process -FilePath "C:\Program Files\WindowsApps\SpotifyAB.SpotifyMusic_1.148.625.0_x86__zpdnekdrzrea0\Spotify.exe"
             Start-Process -FilePath "https://open.spotify.com/playlist/6WK4lOFxtSnQaV1JMIydYg"
         }
-        if ($Choice -eq 'ie') {
+        if ($Choice -eq 'in') {
             Write-Host "Opening your specified Spotify playlist" -ForegroundColor Green;
             Start-Process -FilePath "C:\Program Files\WindowsApps\SpotifyAB.SpotifyMusic_1.148.625.0_x86__zpdnekdrzrea0\Spotify.exe"
             Start-Process -FilePath "https://open.spotify.com/playlist/5YbMOpWoW6nioVqgtdmuGp"
