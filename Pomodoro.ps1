@@ -173,6 +173,8 @@ while ($In -eq "") {
     }
     Start-SimplePomodoro -Music y -IFTTTMuteTrigger Mute_Notifs -IFTTTUnMuteTrigger Unmute_notifs -IFTTTWebhookKe dGRR9guULGA_JzmOYMkM5n
     Clear-Host  
+    $wshell = New-Object -ComObject Wscript.Shell
+    $wshell.Popup("Pomo Completed", 6, "Continue", 0x4 + 4096)
     $PomoNote = Read-Host -Prompt 'What tasks did you do?'
     Clear-Host 
     $PomoReflect = Read-Host -Prompt 'Reflect (insights, roadblocks, concerns & musings)'
